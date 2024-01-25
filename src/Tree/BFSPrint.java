@@ -1,6 +1,6 @@
 package Tree;
 
-import com.sun.source.tree.Tree;
+import Graph.GraphNode;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
@@ -23,6 +23,22 @@ public class BFSPrint {
             alreadyVisited.add(currentNode);
             queue.addAll(currentNode.getChildNodes());
             queue.removeAll(alreadyVisited);
+        }
+    }
+    public static void BFSPrintGraph(GraphNode node){
+        Queue<GraphNode> queueGr =new ArrayDeque<>();
+        queueGr.add(node);
+
+        GraphNode currentNode;
+        Set<GraphNode> alreadyVisited=new HashSet<>();
+        System.out.print("Visited Nodes: ");
+        while (!queueGr.isEmpty()){
+            currentNode= queueGr.remove();
+            System.out.print(currentNode.getValue()+ " | ");
+
+            alreadyVisited.add(currentNode);
+            queueGr.addAll(currentNode.getAdjacentNodes());
+            queueGr.removeAll(alreadyVisited);
         }
     }
 }
